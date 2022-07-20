@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-
 import styles from "./Header.module.css";
 
 class Header extends Component {
   render() {
-   
-
-    return (
+       return (
       <header className={styles.Header}>
         <h1>ASDA</h1>
        </header>
