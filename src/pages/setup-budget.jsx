@@ -1,10 +1,10 @@
 import { Button, Slider, Stack, TextField } from "@mui/material"
-import { Box } from "@mui/system"
 import { useState } from "react"
 import styled from "styled-components"
-import FilterField from "../components/FilterField"
+import FilterField from "../Components/FilterField"
 import '../Assets/layouts.css'
 import { limits, SearchTags } from "../configs/budget-config"
+import Header from "../Components/Header/Header"
 
 const RowContainer = styled.div`
     display: flex;
@@ -50,7 +50,9 @@ const SetupBudgetPage = ({
     }
 
     return (
-        <div style={{margin: 50, border: '1px solid green', padding: '3% 8%'}}>
+        <>
+        <Header />
+        <div style={{margin: 50, marginTop: 150, border: '1px solid green', padding: '2% 5%'}}>
         <h1>
             Set your Budget
         </h1>
@@ -127,6 +129,7 @@ const SetupBudgetPage = ({
             <Button style={{ paddingInline: 50, border: '1px solid green', marginInline: 10}} onClick={resetFields}> Reset </Button>
         </Stack>
         </div>
+        </>
     )
 }
 
