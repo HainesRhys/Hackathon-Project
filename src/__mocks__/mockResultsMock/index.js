@@ -26,5 +26,5 @@ export const Results = [
     "CookTime": "35 Mins",
     "Servings": 4,
     "Img": "../../Assets/Images/Chicken&RicePot.jpeg"
-  },
+  }
 ]
