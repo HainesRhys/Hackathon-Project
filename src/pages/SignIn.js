@@ -19,6 +19,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import { useNavigate } from 'react-router-dom'
 
 
 function Copyright(props) {
@@ -26,7 +27,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://www.asda.com/">
-      https://www.asda.com/
+        https://www.asda.com/
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -40,7 +41,7 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const images = [
   {
     label: 'Cherry Artic Roll',
-    imgPath:'https://ui.assets-asda.com/dm/asdagroceries/b4621b7e-d106-11ec-bb7e-25f12b6ec984_Square?scl=1',
+    imgPath: 'https://ui.assets-asda.com/dm/asdagroceries/b4621b7e-d106-11ec-bb7e-25f12b6ec984_Square?scl=1',
   },
   {
     label: 'Parma Violet Seltzer',
@@ -85,7 +86,9 @@ export default function SignInSide() {
       password: data.get('password'),
     });
   };
-//carousel
+
+  const navigate = useNavigate()
+  //carousel
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images.length;
@@ -98,7 +101,7 @@ export default function SignInSide() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleStepChange = (step: number) => {
+  const handleStepChange = (step) => {
     setActiveStep(step);
   };
 
@@ -106,84 +109,84 @@ export default function SignInSide() {
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
-        <Grid  item
+        <Grid item
           xs={false}
           sm={4}
           md={7}
           sx={{
-            
+
             backgroundRepeat: 'no-repeat',
             backgroundColor: 'white'
           }}>
-        <Box sx={{ maxWidth: 900, flexGrow: 1 }}>
-      <Paper
-        square
-        elevation={0}
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          height: 50,
-          pl: 2,
-          bgcolor: 'background.default',
-        }}
-      >
-        <Typography>{images[activeStep].label}</Typography>
-      </Paper>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
-        {images.map((step, index) => (
-          <div key={step.label}>
-            {Math.abs(activeStep - index) <= 2 ? (
-              <Box
-                component="img"
-                sx={{
-                  height: 750,
-                  display: 'block',
-                  maxWidth: 900,
-                  overflow: 'hidden',
-                  width: '100%',
-                }}
-                src={step.imgPath}
-                alt={step.label}
-              />
-            ) : null}
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
-      <MobileStepper
-        steps={maxSteps}
-        position="static"
-        activeStep={activeStep}
-        nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-          >
-            Next
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-            Back
-          </Button>
-        }
-      />
-    </Box>
+          <Box sx={{ maxWidth: '100vw', flexGrow: 1 }}>
+            <Paper
+              square
+              elevation={0}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                height: 50,
+                pl: 2,
+                bgcolor: 'background.default',
+              }}
+            >
+              <Typography>{images[activeStep].label}</Typography>
+            </Paper>
+            <AutoPlaySwipeableViews
+              axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+              index={activeStep}
+              onChangeIndex={handleStepChange}
+              enableMouseEvents
+            >
+              {images.map((step, index) => (
+                <div key={step.label}>
+                  {Math.abs(activeStep - index) <= 2 ? (
+                    <Box
+                      component="img"
+                      sx={{
+                        height: '90vh',
+                        display: 'block',
+                        // maxWidth: 900,
+                        overflow: 'hidden',
+                        width: '100%',
+                      }}
+                      src={step.imgPath}
+                      alt={step.label}
+                    />
+                  ) : null}
+                </div>
+              ))}
+            </AutoPlaySwipeableViews>
+            <MobileStepper
+              steps={maxSteps}
+              position="static"
+              activeStep={activeStep}
+              nextButton={
+                <Button
+                  size="small"
+                  onClick={handleNext}
+                  disabled={activeStep === maxSteps - 1}
+                >
+                  Next
+                  {theme.direction === 'rtl' ? (
+                    <KeyboardArrowLeft />
+                  ) : (
+                    <KeyboardArrowRight />
+                  )}
+                </Button>
+              }
+              backButton={
+                <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                  {theme.direction === 'rtl' ? (
+                    <KeyboardArrowRight />
+                  ) : (
+                    <KeyboardArrowLeft />
+                  )}
+                  Back
+                </Button>
+              }
+            />
+          </Box>
         </Grid>
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
@@ -198,20 +201,23 @@ export default function SignInSide() {
             {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />
             </Avatar> */}
+            <Box
+              component="img"
+              sx={{
+                height: 50,
+                width: 150,
+                maxHeight: { xs: 233, md: 167 },
+                maxWidth: { xs: 350, md: 250 },
+              }}
+              alt="The house from the offer."
+              src={Logo}
+            />
+            <Typography component="h1" variant="h5" sx={{ color: 'green' }}>
+              Buy to Save
+            </Typography>
             <Typography component="h1" variant="h5">
               Sign In
             </Typography>
-            <Box
-        component="img"
-        sx={{
-          height: 50,
-          width: 150,
-          maxHeight: { xs: 233, md: 167 },
-          maxWidth: { xs: 350, md: 250 },
-        }}
-        alt="The house from the offer."
-        src={Logo}
-      />
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
@@ -242,6 +248,9 @@ export default function SignInSide() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={
+                  e => navigate('/home')
+                }
               >
                 Sign In
               </Button>
