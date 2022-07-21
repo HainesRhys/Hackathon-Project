@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
   FeaturedResults,
@@ -13,7 +13,7 @@ import {
 import Modal from "react-modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { flexbox } from "@mui/system";
+import Header from "../../Components/Header/Header.jsx";
 
 type TFeatureItemProps = {
   backgroundImage: string;
@@ -150,6 +150,7 @@ const ModalCont = styled(Modal)`
 `;
 
 const FeatureRecipeItem = ({ item }) => {
+  console.log(item)
   return (
     <FeatureItemContainer backgroundImage={item.Img}>
       <IconContainer>
@@ -288,9 +289,17 @@ const ListItems = ({ item, testId, setModalShow, setItems }) => {
 const ResultsPage = () => {
   const [modalShow, setModalShow] = useState(false);
   const [items, setItems] = useState([]);
+  const [FeaturedItems, setFeaturedItems] = useState([{}])
+  const [ListResultItems, setListResultItems] = useState([{}])
+
+  useEffect(() => {
+    setFeaturedItems(FeaturedResults)
+    setListResultItems(ListResults)
+  },[FeaturedItems,ListResultItems])
 
   return (
     <PageContainer>
+      <Header/>
       <ItemModal
         items={items}
         modalShow={modalShow}
@@ -299,7 +308,7 @@ const ResultsPage = () => {
       <FeaturedContainer>
         <h2>Top 3 Recipes</h2>
         <FeatureResultsContainer>
-          {FeaturedResults.map((item, index) => {
+          {FeaturedItems.map((item, index) => {
             return <FeatureRecipeItem key={index} item={item} />;
           })}
         </FeatureResultsContainer>
@@ -307,7 +316,7 @@ const ResultsPage = () => {
       <FeaturedContainer>
         <h2>Search Results</h2>
         <ListResultsContainer>
-          {ListResults.map((item, index) => {
+          {ListResultItems.map((item, index) => {
             return (
               <ListItems
                 item={item}

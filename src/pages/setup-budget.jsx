@@ -5,6 +5,7 @@ import FilterField from "../Components/FilterField"
 import '../Assets/layouts.css'
 import { limits, SearchTags } from "../configs/budget-config"
 import Header from "../Components/Header/Header"
+import { customHistory } from "../Components/RootNavigation"
 
 const RowContainer = styled.div`
     display: flex;
@@ -125,7 +126,7 @@ const SetupBudgetPage = ({
 
         </RowContainer>
         <Stack flexDirection={'row-reverse'} style={{marginRight: 50}}>
-            <Button style={{backgroundColor: 'green', color: 'white', paddingInline: 50, }}> Search </Button>
+            <Button style={{backgroundColor: 'green', color: 'white', paddingInline: 50, }} onClick={() => customHistory.push('/Results')}> Search </Button>
             <Button style={{ paddingInline: 50, border: '1px solid green', marginInline: 10}} onClick={resetFields}> Reset </Button>
         </Stack>
         </div>

@@ -1,12 +1,11 @@
 import React from "react";
 import Header from "../Components/Header/Header";
-import ResultsPage from "./ResultsPage/index.tsx";
+import RootNavigation from "../Components/RootNavigation";
 
 function App() {
   return (
     <div className="App" >
-      <Header />
-      <ResultsPage />
+      <RootNavigation/>
     </div>
   );
 }
