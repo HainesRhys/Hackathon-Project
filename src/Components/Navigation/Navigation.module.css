@@ -7,6 +7,7 @@
   height: 100%;
   list-style-type: none;
   margin: 0;
+  margin-right: 50px;
 }
 
 .Navigation li {
@@ -15,7 +16,10 @@
   height: 100%;
   padding: 0 10px;
   position: relative;
+  
 }
+
+
 
 .active {
   background-color: #9bbe95;
@@ -32,6 +36,17 @@
 }
 
 .Navigation a {
-  color: white;
+  color: rgb(10, 119, 0);
+  font-size: 1.18rem;
+  padding: 15% 32%;
   text-decoration: none;
+  transition-delay: 100ms;
+  transition-duration: 600ms;
+}
+
+.Navigation a:hover {
+  background-color: lightgreen;
+  font-weight: 500;
+  transition-delay: 100ms;
+  transition-duration: 800ms;
 }
