@@ -1,0 +1,20 @@
+
+
+.margin-2p {
+    margin: 2%;
+}
+
+.MuiSlider-thumb {
+    background-color: green !important; 
+    height: 24px !important;
+    width: 24px !important;
+}
+
+.MuiSlider-rail {
+    background-color: grey !important;
+}
+
+.MuiSlider-track {
+    background-color: lightgreen !important;
+    border: none !important;
+}
