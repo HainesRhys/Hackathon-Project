@@ -1,5 +1,5 @@
 .Header {
-  background-color: #424242;
+  background-color: #ffffff;
   border-bottom: 1px solid #424242;
   color: #169016;
   height: 100px;
@@ -11,5 +11,6 @@
   top: 0;
   width: 100%;
   z-index: 9;
+  box-shadow: 4px 8px 24px #888888;
   text-align: center;
 }
