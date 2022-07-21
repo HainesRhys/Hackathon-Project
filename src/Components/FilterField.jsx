@@ -5,36 +5,34 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
 export default function FilterField({
-    data, onChange, placeholder, label, style
+    data, onChange, placeholder, label, style, value, getValueSetter
 }) {
-    const fixedOptions = [];
-    const [value, setValue] = React.useState([...fixedOptions]);
+    const [_value, setValue] = React.useState(value);
 
     return (
         <div style={style}>
             <Autocomplete
                 multiple
                 id="fixed-tags-demo"
-                value={value}
+                value={_value}
                 onChange={(event, newValue) => {
                     setValue([
-                        ...fixedOptions,
-                        ...newValue.filter((option) => fixedOptions.indexOf(option) === -1),
+                        ...newValue,
                     ]);
-                    onChange && onChange(fixedOptions)
+                    onChange && onChange(_value)
                 }}
                 options={data}
-                getOptionLabel={(option) => option}
+                getOptionLabel={(option) => option.title}
                 renderTags={(tagValue, getTagProps) =>
                     tagValue.map((option, index) => (
                         <Chip
-                            label={option}
+                            label={option.title}
                             {...getTagProps({ index })}
-                            disabled={fixedOptions.indexOf(option) !== -1}
+                            style={{backgroundColor: option.color || 'white', color: option.textColor || 'black'}}
                         />
                     ))
                 }
-                style={{ minWidth: 200, maxWidth: 500 }}
+                style={{ minWidth: 200, maxWidth: 500,}}
                 renderInput={(params) => (
                     <TextField {...params} label={label} placeholder={placeholder} />
                 )}

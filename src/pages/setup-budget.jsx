@@ -4,6 +4,7 @@ import { useState } from "react"
 import styled from "styled-components"
 import FilterField from "../components/FilterField"
 import '../Assets/layouts.css'
+import { limits, SearchTags } from "../configs/budget-config"
 
 const RowContainer = styled.div`
     display: flex;
@@ -27,9 +28,26 @@ const styles = {
 const SetupBudgetPage = ({
 
 }) => {
+
     const [mealBudget, setMealBudget] = useState(0)
     const [totalBudget, setTotalBudget] = useState(0)
     const [personCount, setPersonCount] = useState(0)
+    
+    const [searchTags, setSearchTags] = useState([])
+    const [mustInclude, setMustInclude] = useState([])
+    const [mustExclude, setMustExclude] = useState([])
+
+    let mustIncludeSetter, mustExcludeSetter, searchTagSetter;
+
+    const resetFields = e => {
+        setMealBudget(0)
+        setTotalBudget(0)
+        setPersonCount(0)
+
+        setSearchTags([])
+        setMustExclude([])
+        setMustInclude([])
+    }
 
     return (
         <div style={{margin: 50, border: '1px solid green', padding: '3% 8%'}}>
@@ -43,8 +61,9 @@ const SetupBudgetPage = ({
                     <Slider 
                         name="Meal Budget" 
                         onChange={e => setMealBudget(e.target.value)}
-                        min={10}
-                        max={2000}
+                        min={limits.mealBudget.min}
+                        max={limits.mealBudget.max}
+                        value={mealBudget}
                     /> 
                     <strong className="margin-2p"> £{mealBudget} </strong>
                 </RowContainer>
@@ -52,8 +71,10 @@ const SetupBudgetPage = ({
                 <RowContainer>
                     <Slider name="Total Budget" 
                     onChange={e => setTotalBudget(e.target.value)}
-                    min={10}
-                    max={3000}
+                    min={limits.totalBudget.min}
+                    max={limits.totalBudget.max}
+                    value={totalBudget}
+                    
                     
                     /> <strong className="margin-2p"> £{totalBudget} </strong>
                 </RowContainer>
@@ -62,8 +83,9 @@ const SetupBudgetPage = ({
                     <Slider name="Number of Persons"
                     
                     onChange={e => setPersonCount(e.target.value)}
-                    min={1}
-                    max={20}
+                    min={limits.personCount.min}
+                    max={limits.personCount.max}
+                    value={personCount}
                     
                     /> <strong className="margin-2p"> {personCount} </strong>
                 </RowContainer>
@@ -73,28 +95,28 @@ const SetupBudgetPage = ({
             <ColContainer style={{...styles.inputContainer, marginTop: 100}}>
                 <FilterField 
                     style={{marginBottom: '15px'}}
-                    data={[
-                        'one', 'two', 'three'
-                    ]}
+                    data={SearchTags}
                     label="Search Requirements"
                     placeholder={"Select Requirements..."}
+                    onChange={e => setSearchTags(e)}
+                    value={searchTags}
                 />
 
                 <FilterField 
                     style={{marginBottom: '15px'}}
-                    data={[
-                        'one', 'two', 'three'
-                    ]}
+                    data={SearchTags}
                     label="Must Include"
                     placeholder={"Select Requirements..."}
+                    onChange={e => setMustInclude(e)}
+                    value={mustInclude}
                 />
                 <FilterField 
                     style={{marginBottom: '15px'}}
-                    data={[
-                        'one', 'two', 'three'
-                    ]}
+                    data={SearchTags}
                     label="Must Exclude"
                     placeholder={"Select Requirements..."}
+                    onChange={e => setMustExclude(e)}
+                    value={mustExclude}
                 />
                 
             </ColContainer>
@@ -102,7 +124,7 @@ const SetupBudgetPage = ({
         </RowContainer>
         <Stack flexDirection={'row-reverse'} style={{marginRight: 50}}>
             <Button style={{backgroundColor: 'green', color: 'white', paddingInline: 50, }}> Search </Button>
-            <Button style={{ paddingInline: 50, border: '1px solid green', marginInline: 10}}> Reset </Button>
+            <Button style={{ paddingInline: 50, border: '1px solid green', marginInline: 10}} onClick={resetFields}> Reset </Button>
         </Stack>
         </div>
     )
