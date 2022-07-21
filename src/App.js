@@ -1,12 +1,10 @@
 import React from "react";
-import SetupBudgetPage from "./pages/setup-budget";
-
+import AppRouter from "../routes";
 
 function App() {
   return (
-    <div className="App">
-        <SetupBudgetPage></SetupBudgetPage>
-    </div>
+    <AppRouter  />
+    
   );
 }
 
