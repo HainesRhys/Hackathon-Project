@@ -12,7 +12,7 @@ export class Navigation extends Component {
       <nav className={styles.Navigation}>
         <ul>
           <li className={classNames({ [styles.active]: activeTab === "home" })}>
-            <Link to="/">Home</Link>
+            <Link to="/set-budget">Budget</Link>
           </li>
           <li>
             <a href="/logout"  >Logout</a>

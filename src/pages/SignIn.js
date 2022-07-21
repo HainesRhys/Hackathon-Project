@@ -19,6 +19,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import { useNavigate } from 'react-router-dom'
 
 
 function Copyright(props) {
@@ -85,6 +86,8 @@ export default function SignInSide() {
       password: data.get('password'),
     });
   };
+
+  const navigate = useNavigate()
 //carousel
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -98,7 +101,7 @@ export default function SignInSide() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleStepChange = (step: number) => {
+  const handleStepChange = (step) => {
     setActiveStep(step);
   };
 
@@ -115,7 +118,7 @@ export default function SignInSide() {
             backgroundRepeat: 'no-repeat',
             backgroundColor: 'white'
           }}>
-        <Box sx={{ maxWidth: 900, flexGrow: 1 }}>
+        <Box sx={{ maxWidth: '100vw', flexGrow: 1 }}>
       <Paper
         square
         elevation={0}
@@ -141,9 +144,9 @@ export default function SignInSide() {
               <Box
                 component="img"
                 sx={{
-                  height: 750,
+                  height: '90vh',
                   display: 'block',
-                  maxWidth: 900,
+                  // maxWidth: 900,
                   overflow: 'hidden',
                   width: '100%',
                 }}
@@ -198,9 +201,6 @@ export default function SignInSide() {
             {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />
             </Avatar> */}
-            <Typography component="h1" variant="h5">
-              Sign In
-            </Typography>
             <Box
         component="img"
         sx={{
@@ -212,6 +212,12 @@ export default function SignInSide() {
         alt="The house from the offer."
         src={Logo}
       />
+            <Typography component="h1" variant="h5" sx={{color:'green'}}>
+              Buy to Save
+            </Typography>
+            <Typography component="h1" variant="h5">
+              Sign In
+            </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
@@ -242,6 +248,9 @@ export default function SignInSide() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={
+                  e => navigate('/home')
+                }
               >
                 Sign In
               </Button>
