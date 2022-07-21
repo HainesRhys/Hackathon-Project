@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Components/Home/Home";
-import SignInSide from "./Pages/SignIn";
-import SetupBudgetPage from "./Pages/setup-budget";
+import SignInSide from "./pages/SignIn";
+import SetupBudgetPage from "./pages/setup-budget";
 
 const AppRouter = () => {
   return (
