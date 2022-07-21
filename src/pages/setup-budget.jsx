@@ -32,7 +32,7 @@ const SetupBudgetPage = ({
     const [personCount, setPersonCount] = useState(0)
 
     return (
-        <div style={{margin: 50}}>
+        <div style={{margin: 50, border: '1px solid green', padding: '3% 8%'}}>
         <h1>
             Set your Budget
         </h1>

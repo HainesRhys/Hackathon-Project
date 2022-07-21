@@ -34,7 +34,7 @@ export default function FilterField({
                         />
                     ))
                 }
-                style={{ width: 500 }}
+                style={{ minWidth: 200, maxWidth: 500 }}
                 renderInput={(params) => (
                     <TextField {...params} label={label} placeholder={placeholder} />
                 )}
