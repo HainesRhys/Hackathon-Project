@@ -118,7 +118,12 @@ const ListImageContainer = styled.div<TListItemProps>`
 
 const ListItemTitle = styled.h2``;
 
-const ListItemTextCintainer = styled.div``;
+const ListItemTextCintainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex: 4;
+    margin-left: 50px
+`;
 const ListItemIconCintainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -133,6 +138,7 @@ const ButtonContainer = styled.div`
   align-items: center;
   height: 100%;
   justify-content: space-around;
+  flex: 1;
 `;
 const ListItemButton = styled.button<TListButtonProps>`
   width: 100px;
@@ -142,15 +148,29 @@ const ListItemButton = styled.button<TListButtonProps>`
 `;
 
 const ModalCont = styled(Modal)`
-  margin-top: 15vh;
+  margin-top: 10vh;
   background-color: white;
   width: 75vw;
   margin-left: 20vh;
-  border: 1px solid black ;
+  border: 1px solid black;
+`;
+
+const ModalButton = styled.button`
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 5px;
+    transition: ease-in-out 0.5s;
+    padding: 10px 15px;
+    &:hover{
+      color: white;
+      background-color: green;
+      border: 1px solid black;
+      color: white;
+    }
 `;
 
 const FeatureRecipeItem = ({ item }) => {
-  console.log(item)
+  console.log(item);
   return (
     <FeatureItemContainer backgroundImage={item.Img}>
       <IconContainer>
@@ -213,37 +233,52 @@ const ItemModal = ({ modalShow, setModalShow, items }) => {
                   }}
                 >
                   {" "}
-                  image
+                  Image
                 </div>
                 <p style={{ width: "20vw" }}>{item.name}</p>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  <button
+                  <ModalButton
                     onClick={() => toast.success("Items added to basket!")}
                   >
                     {" "}
                     Add Item
-                  </button>
-                  {
-                    item.freeWeigth && <p style={{ fontSize: "10px", color: "blue" }}>Use Free Weight</p>
-                  }
+                  </ModalButton>
+                  {item.freeWeigth && (
+                    <p
+                      onClick={() =>
+                        toast.success("Free weight item added to basket!")
+                      }
+                      style={{ fontSize: "10px", color: "blue", cursor: "pointer", paddingLeft: "9px" }}
+                    >
+                      Use Free Weight
+                    </p>
+                  )}
                 </div>
               </div>
             );
           })}
         </div>
         <br />
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", width: '30vw', marginBottom: '10px' }}>
-          <button onClick={() => setModalShow(false)}>Close</button>
-          <button onClick={() => toast.success("All items added to basket!")}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+            width: "30vw",
+            marginBottom: "10px",
+          }}
+        >
+          <ModalButton onClick={() => setModalShow(false)}>Close</ModalButton>
+          <ModalButton onClick={() => toast.success("All items added to basket!")}>
             Add all
-          </button>
-          <button
+          </ModalButton>
+          <ModalButton
             onClick={() =>
               toast.success("All free weight items added to basket!")
             }
           >
             Add all free weight
-          </button>
+          </ModalButton>
         </div>
       </div>
     </ModalCont>
@@ -289,17 +324,17 @@ const ListItems = ({ item, testId, setModalShow, setItems }) => {
 const ResultsPage = () => {
   const [modalShow, setModalShow] = useState(false);
   const [items, setItems] = useState([]);
-  const [FeaturedItems, setFeaturedItems] = useState([{}])
-  const [ListResultItems, setListResultItems] = useState([{}])
+  const [FeaturedItems, setFeaturedItems] = useState([{}]);
+  const [ListResultItems, setListResultItems] = useState([{}]);
 
   useEffect(() => {
-    setFeaturedItems(FeaturedResults)
-    setListResultItems(ListResults)
-  },[FeaturedItems,ListResultItems])
+    setFeaturedItems(FeaturedResults);
+    setListResultItems(ListResults);
+  }, [FeaturedItems, ListResultItems]);
 
   return (
     <PageContainer>
-      <Header/>
+      <Header />
       <ItemModal
         items={items}
         modalShow={modalShow}
