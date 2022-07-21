@@ -1,10 +1,13 @@
 import React from "react";
-import AppRouter from "../routes";
+import Header from "../Components/Header/Header";
+import ResultsPage from "./ResultsPage/index.tsx";
 
 function App() {
   return (
-    <AppRouter  />
-    
+    <div className="App" >
+      <Header />
+      <ResultsPage />
+    </div>
   );
 }
 
